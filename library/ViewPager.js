@@ -1,8 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   ListView,
-  Platform
+  Platform,
+  ViewPropTypes
 } from 'react-native';
 
 import Scroller from 'react-native-scroller';
@@ -15,7 +17,7 @@ const MIN_FLING_VELOCITY = 0.5;
 export default class ViewPager extends Component {
 
   static propTypes = {
-    ...View.propTypes,
+    ...ViewPropTypes,
     initialPage: PropTypes.number,
     pageMargin: PropTypes.number,
     scrollEnabled: PropTypes.bool,
@@ -58,8 +60,9 @@ export default class ViewPager extends Component {
         }
       } else {
         const curX = this.scroller.getCurrX();
-        this.refs['innerListView'].scrollTo({x: curX, animated: false});
-
+        if(this.refs['innerListView']){
+          this.refs['innerListView'].scrollTo({x: curX, animated: false});
+        }
         let position = Math.floor(curX / (this.state.width + this.props.pageMargin));
         position = this.validPage(position);
         let offset = (curX - this.getScrollOffsetOfPage(position)) / (this.state.width + this.props.pageMargin);
