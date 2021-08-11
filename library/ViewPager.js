@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  ListView,
   Platform,
   ViewPropTypes
 } from 'react-native';
@@ -11,6 +10,7 @@ import Scroller from 'react-native-scroller';
 import {createResponder} from 'react-native-gesture-responder';
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
+import ListView from 'deprecated-react-native-listview';
 
 const MIN_FLING_VELOCITY = 0.5;
 
